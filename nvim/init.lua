@@ -1,3 +1,4 @@
-require('jn/options')
-require('jn/keymaps')
-
+require('user.plugins')
+require('user.options')
+require('user.keymaps')
+require('user.misc')
