@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+brew install lua-language-server
+brew install fzf
+brew install proselint
+brew install gitlint
+brew install luacheck
+brew install php-cs-fixer
+brew install jq
+brew install stylua
+brew install ripgrep
+brew install fd
+brew install luarocks
