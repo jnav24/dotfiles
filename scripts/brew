@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install and setup NVM
+brew install nvm
+mkdir ~/.nvm
+nvm install 14.18.1
+nvm use 14.18.1
+nvm alias default 14.18.1
+
+# Install Neovim
+brew install neovim
+
+# Install Tmux
+brew install tmux
+
+# Install everything I need for Neovim
 brew install lua-language-server
 brew install fzf
 brew install proselint
