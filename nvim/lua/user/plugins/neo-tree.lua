@@ -5,7 +5,7 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSig
 
 vim.keymap.set("n", "<Leader>1", ":NeoTreeFocusToggle<CR>")
 vim.keymap.set("n", "<Leader>gs", ":Neotree float git_status<CR>")
-º
+
 require("neo-tree").setup({
 	close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 	popup_border_style = "rounded",
