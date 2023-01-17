@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
+# Setup zshrc
+rm $HOME/.zshrc
+chmod 0644 $DOTFILES/scripts/zshrc
+ln -s $DOTFILES/scripts/zshrc $HOME/.zshrc
+
+# Setup preferences
+mkdir -p $HOME/bin
+
+ITEMS=( alias cb cmb colors paths sources )
+
+for ITEM in "${ITEMS[@]}"
+do
+  chmod +x $DOTFILES/bin/$ITEM
+  rm -rf $HOME/bin/$ITEM
+  ln -s $DOTFILES/bin/$ITEM $HOME/bin/$ITEM
+done
+
+# Install Kitty Terminal
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+source $HOME/bin/sources
+source $DOTFILES/scripts/brew
+source $DOTFILES/scripts/npm
+source $DOTFILES/install
+echo "end"
