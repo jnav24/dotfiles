@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# cmb (Clean Merged Branches)
+# a command to fetch, prune and remove any branches that were merged remotely
+# this command will run git in your current directory
+
+SAFE_BRANCHES="staging|dev|develop|master|main|test|production"
+
+read -p "This can delete all local branches that were merged remotely except for $SAFE_BRANCHES. Do you want to continue? (Y/n) " -n 1 -r
+
+if [[ ! $REPLY =~ ^[Nn]$ ]]
+then
+        if [[ -d ".git" ]]; then
+		echo "deleting..."
+                git fetch -p; git branch --merged | egrep -v "(^\*|\$SAFE_BRANCHES)" | xargs git branch -d
+                echo "done"
+        else
+                echo "Unable to locate git in the current directory"
+        fi
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source ~/bin/alias
+source ~/bin/colors
+source ~/bin/paths

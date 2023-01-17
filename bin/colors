@@ -1,0 +1,4 @@
+autoload -U colors && colors
+PS1="💩 %B%{$fg[cyan]%} %~ %{$fg[white]%} $%b "
+CLICOLOR=1
+LSCOLORS=ExFxBxDxCxegedabagacad
