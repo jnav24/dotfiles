@@ -3,7 +3,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
-source ~/bin/sources
+source $HOME/bin/sources
 
 path=(
 	$HOME/.local/bin
