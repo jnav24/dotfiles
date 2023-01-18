@@ -5,6 +5,7 @@
 
 # Install and setup NVM
 brew install nvm
+source $HOME/.zshrc
 mkdir ~/.nvm
 nvm install 14.18.1
 nvm use 14.18.1
