@@ -18,6 +18,7 @@ brew install neovim
 brew install tmux
 
 # Install everything I need for Neovim
+brew install wget
 brew install lua-language-server
 brew install fzf
 brew install proselint
