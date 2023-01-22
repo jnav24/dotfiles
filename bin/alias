@@ -1,2 +1,6 @@
 alias ll="ls -alF"
 alias vi="nvim"
+alias dcd="docker-compose down"
+alias dcu="docker-compose up"
+alias dcr="docker-compose run --rm"
+
