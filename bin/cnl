@@ -12,7 +12,6 @@ if [[ ! -n $1 ]]; then
     exit 1
 fi
 
-CURRENT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 C_DIR=`pwd`
 
 git clone git@github.com:laravel/laravel ~/tmp-laravel
