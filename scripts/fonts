@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+FONTS=( "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/JetBrainsMono.zip" ) 
+TMP_FONT="tmp-fonts"
+
+for FONT in "${FONTS[@]}"
+do
+    wget -O $HOME/Downloads/$TMP_FONT.zip $FONT
+    unzip $HOME/Downloads/$TMP_FONT.zip -d $HOME/Downloads/$TMP_FONT
+    mv -v $HOME/Downloads/$TMP_FONT/* $HOME/Library/Fonts/
+    rm -rf $HOME/Downloads/$TMP_FONT*
+done
+
