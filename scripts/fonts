@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FONTS=( "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/JetBrainsMono.zip" ) 
+FONTS=( "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/FiraMono.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0/JetBrainsMono.zip" ) 
 TMP_FONT="tmp-fonts"
 
 for FONT in "${FONTS[@]}"
