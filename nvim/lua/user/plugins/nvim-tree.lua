@@ -1,23 +1,27 @@
 -- vim.g.nvim_tree_indent_markers = 1
 -- vim.g.nvim_tree_git_hl = 1
 
-require('nvim-tree').setup({
-  git = {
-    ignore = false,
-  },
-  renderer = {
-    highlight_opened_files = '1',
-    group_empty = true,
-    icons = {
-      show = {
-        folder_arrow = false,
-      },
-    },
-    indent_markers = {
-      enable = true,
-      -- inline_arrows = false,
-    },
-  },
+require("nvim-tree").setup({
+	git = {
+		ignore = false,
+	},
+	renderer = {
+		highlight_opened_files = "1",
+		group_empty = true,
+		icons = {
+			show = {
+				folder_arrow = false,
+			},
+		},
+		indent_width = 4,
+		indent_markers = {
+			enable = true,
+			-- inline_arrows = false,
+		},
+	},
+	view = {
+		width = 75,
+	},
 })
 
 vim.cmd([[
@@ -27,4 +31,4 @@ vim.cmd([[
   augroup end
 ]])
 
-vim.keymap.set('n', '<leader>n', ':NvimTreeFindFileToggle<CR>')
+vim.keymap.set("n", "<leader>n", ":NvimTreeFindFileToggle<CR>")
