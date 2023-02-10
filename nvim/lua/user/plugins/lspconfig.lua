@@ -1,3 +1,6 @@
+require('mason').setup()
+require('mason-lspconfig').setup({ automatic_installation = true })
+
 local util = require('lspconfig.util')
 
 vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting_seq_sync, {})
