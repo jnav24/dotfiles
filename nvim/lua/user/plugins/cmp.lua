@@ -1,10 +1,11 @@
-local has_words_before = function()
-  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
 local luasnip = require('luasnip')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
+
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,longest,preview'
@@ -47,7 +48,7 @@ cmp.setup({
       -- behavior = cmp.ConfirmBehavior.Replace,
       -- select = false,
     end, { 'i', 's' }),
-    ['<C-Tab>'] = cmp.mapping(function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       print('tabbing...')
       if luasnip.jumpable(1) then
         luasnip.jump(1)
@@ -92,8 +93,11 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
-    { name = 'path' },
     { name = 'buffer' },
+    { name = 'path' },
     -- { name = 'fuzzy_path' },
+  },
+  experimental = {
+    ghost_text = true,
   },
 })
