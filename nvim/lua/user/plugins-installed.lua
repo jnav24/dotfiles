@@ -222,6 +222,7 @@ use({
 		"williamboman/mason-lspconfig.nvim",
 		"b0o/schemastore.nvim",
 		"folke/lsp-colors.nvim",
+		"jayp0521/mason-null-ls.nvim",
 	},
 	config = function()
 		require("user.plugins.lspconfig")
