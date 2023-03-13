@@ -24,6 +24,7 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
 source $HOME/bin/sources
 source $DOTFILES/scripts/brew
+source $DOTFILES/scripts/fonts
 source $DOTFILES/scripts/npm
 source $DOTFILES/install
 echo "end"
