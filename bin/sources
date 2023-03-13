@@ -2,4 +2,4 @@
 
 source ~/bin/alias
 source ~/bin/colors
-source ~/bin/paths
+#source ~/bin/paths
