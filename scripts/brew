@@ -4,12 +4,13 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install and setup NVM
+NODE_VERSION=18.14.2
 brew install nvm
 source $HOME/.zshrc
 mkdir ~/.nvm
-nvm install 14.18.1
-nvm use 14.18.1
-nvm alias default 14.18.1
+nvm install $NODE_VERSION
+nvm use $NODE_VERSION
+nvm alias default $NODE_VERSION
 
 # Install Neovim
 brew install neovim
