@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+###
+# This script was created because I have logs set to daily and since I am running Laravel Sail
+# I have to set the permissions everyday so Laravel can generate the logs. This scripts automates that task.
+# File is created to be run with a cronjob `0 0 * * 1-5`; at midnight, every weekday.
+# This script is only meant to run locally and not on production like environments.
+#
+
+PROJECT_PATH=$(pwd)
+
+if [[ -n $1 ]]; then
+    PROJECT_PATH=$1
+fi
+
+CURRENT_DATE=$(date +'%Y-%m-%d')
+LOG_PATH="$PROJECT_PATH/storage/logs"
+LOG_FILE="laravel-$CURRENT_DATE.log"
+
+if [[ -d $LOG_PATH ]]; then
+  if [[ ! -f "$LOG_PATH/$LOG_FILE" ]]; then
+    touch "$LOG_PATH/$LOG_FILE"
+  fi
+
+  chmod 777 "$LOG_PATH/$LOG_FILE"
+fi
+
+

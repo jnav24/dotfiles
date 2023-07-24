@@ -42,3 +42,7 @@ vim.opt.backup = true
 vim.opt.backupdir:remove('.')
 
 vim.wo.cursorline = true
+
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = true
