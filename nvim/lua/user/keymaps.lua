@@ -40,9 +40,15 @@ vim.keymap.set('n', '<A-Left>', ':vertical resize -2<CR>')
 vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>')
 
 -- Move text up and down
-vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
-vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
-vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
-vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
-vim.keymap.set('x', '<A-j>', ":move '>+1<CR>gv-gv")
-vim.keymap.set('x', '<A-k>', ":move '<-2<CR>gv-gv")
+vim.keymap.set('i', '∆', '<Esc>:move .+1<CR>==gi') -- <A-j>
+vim.keymap.set('i', '˚', '<Esc>:move .-2<CR>==gi') --<A-k>
+vim.keymap.set('n', '∆', ':move .+1<CR>==') -- <A-j>
+vim.keymap.set('n', '˚', ':move .-2<CR>==') -- <A-k>
+vim.keymap.set('x', '∆', ":move '<-2<CR>gv-gv") -- <A-j>
+vim.keymap.set('x', '˚', ":move '>+1<CR>gv-gv") -- <A-k>
+
+-- Save
+vim.keymap.set('n', '<C-s>', ':w<CR>')
+
+-- close buffer
+vim.keymap.set('n', '<C-w>', ':bd<CR>')
