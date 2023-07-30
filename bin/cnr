@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# ---- Create New Rails aka cnr
+# clones the latest Rails project and moves it to current location command was run from then renames the directory.
+# this is an alternative to the `composer create-project laravel/laravel <name>`
+#
+# This script was created because php, composer, artisan, etc live in docker containers and don't exist locally.
+# Since they doesn't exist locally, installing Laravel became harder to do which is why this script was created.
+
+if [[ ! -n $1 ]]; then
+    echo "A name for this project is required"
+    exit 1
+fi
+
+C_DIR=`pwd`
+
+git clone git@github.com:nickjj/docker-rails-example ~/tmp-rails
+rm -rf ~/tmp-rails/.git
+cp ~/tmp-rails/.env.example ~/tmp-rails/.env
+mv ~/tmp-rails "$C_DIR/$1" 
+

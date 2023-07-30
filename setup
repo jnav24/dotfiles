@@ -10,7 +10,7 @@ ln -s $DOTFILES/scripts/zshrc $HOME/.zshrc
 # Setup preferences
 mkdir -p $HOME/bin
 
-ITEMS=( alias cb cmb cnl colors paths sources )
+ITEMS=( alias cb cmb cnl cnr colors paths sources )
 
 for ITEM in "${ITEMS[@]}"
 do
