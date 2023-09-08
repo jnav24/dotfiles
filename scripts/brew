@@ -31,3 +31,5 @@ brew install stylua
 brew install ripgrep
 brew install fd
 brew install luarocks
+brew tap oven-sh/bun
+brew install bun
