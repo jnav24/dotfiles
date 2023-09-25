@@ -18,4 +18,9 @@ git clone git@github.com:laravel/laravel ~/tmp-laravel
 rm -rf ~/tmp-laravel/.git
 cp ~/tmp-laravel/.env.example ~/tmp-laravel/.env
 mv ~/tmp-laravel "$C_DIR/$1" 
-
+cd "$C_DIR/$1"
+git init
+git add --all
+git commit -m 'initial commit'
+git branch -M main
+cd "$C_DIR"
