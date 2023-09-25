@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# ---- Composer Install Laravel aka cil
+# This is just a shortcut to install Laravel's dependencies without
+# having PHP and Composer on your machine via Docker.
+# This command is found here 
+# https://laravel.com/docs/10.x/sail#installing-composer-dependencies-for-existing-projects
+#
+
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
