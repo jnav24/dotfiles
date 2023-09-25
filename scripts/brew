@@ -4,13 +4,11 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install and setup NVM
-NODE_VERSION=18.14.2
 brew install nvm
 source $HOME/.zshrc
 mkdir ~/.nvm
-nvm install $NODE_VERSION
-nvm use $NODE_VERSION
-nvm alias default $NODE_VERSION
+nvm install --lts --default
+nvm use --lts
 
 # Install Neovim
 brew install neovim
@@ -31,5 +29,9 @@ brew install stylua
 brew install ripgrep
 brew install fd
 brew install luarocks
+
+# Node dependent packages independently from NVM in order to use the most up to date versions
 brew tap oven-sh/bun
 brew install bun
+brew install yarn
+brew install pnpm
