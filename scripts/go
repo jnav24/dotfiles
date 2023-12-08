@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# stops script immediately if there is an error
+#set -e
+
+echo "*******************************************************************"
+echo "*******************************************************************"
+echo "*******************************************************************"
+echo "IMPORTANT: Ensure GOROOT is in your path"
+echo "IMPORTANT: This installation is only for M1 Macs"
+echo "*******************************************************************"
+echo "*******************************************************************"
+echo "*******************************************************************"
+
+# get golang content
+GO_CONTENT=$(curl -L https://go.dev/dl/)
+
+# Using grep to get Go latest version from the content
+LATEST_VERSION=$(echo "$GO_CONTENT" | grep -m 1 '<div class="toggleVisible" id=' | sed 's/.*id="go\([^"]*\)".*/\1/')
+#echo "ID value: $LATEST_VERSION"
+
+# Using awk to get Go latest version from the content
+#LATEST_VERSION=$(echo "$GO_CONTENT" | awk -F'id=' '/<div class="toggleVisible" id=/{split($2, a, "\""); print a[2]; exit}')
+#echo "ID value: $LATEST_VERSION"
+
+# get go version
+GO_VERSION=$(go version)
+
+# Extract the version number using awk
+INSTALLED_VERSION=$(echo "$GO_VERSION" | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
+
+install_go() {
+  # https://go.dev/dl/go1.21.5.darwin-amd64.tar.gz
+  wget "https://go.dev/dl/go$LATEST_VERSION.darwin-arm64.tar.gz"
+  # sudo tar -C $HOME -xzf go$LATEST_VERSION.darwin-arm64.tar.gz
+  sudo tar -C /usr/local -xzvf go$LATEST_VERSION.darwin-arm64.tar.gz
+  #  gunzip -c go$LATEST_VERSION.darwin-arm64.tar.gz | tar xopf -
+  rm go$LATEST_VERSION.darwin-arm64.tar.gz
+}
+
+if [ $? -ne 0 ]; then
+  install_go
+  echo "Go was installed successfully"
+  exit 1
+fi
+
+if [[ "$INSTALLED_VERSION" < "$LATEST_VERSION" ]]; then
+  sudo rm -rf /usr/local/go
+  install_go
+  echo "Go was updated successfully"
+  exit 1
+fi
+
+echo "There are no Go updates"

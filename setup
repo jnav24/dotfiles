@@ -26,5 +26,6 @@ source $HOME/bin/sources
 source $DOTFILES/scripts/brew
 source $DOTFILES/scripts/fonts
 source $DOTFILES/scripts/npm
+source $DOTFILES/scripts/go
 source $DOTFILES/install
 echo "end"

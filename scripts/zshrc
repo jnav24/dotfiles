@@ -5,7 +5,10 @@ HISTFILE=~/.cache/zsh/history
 
 source $HOME/bin/sources
 
+export GOROOT=/usr/local/go
+
 path=(
+    $GOROOT/bin
 	$HOME/.flutter/bin
 	$HOME/.local/bin
 	$HOME/bin
