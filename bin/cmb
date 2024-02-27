@@ -11,9 +11,20 @@ read -p "This can delete all local branches that were merged remotely except for
 if [[ ! $REPLY =~ ^[Nn]$ ]]
 then
         if [[ -d ".git" ]]; then
-		echo "deleting..."
-                git fetch -p; git branch --merged | egrep -v "(^\*|\$SAFE_BRANCHES)" | xargs git branch -d
-                echo "done"
+                if [[ -z $(git symbolic-ref --short -q HEAD | egrep -v "(^\*\|\$SAFE_BRANCHES)") ]]; then
+                        echo "Unable to run this command in a feature branch. Checkout to a main branch"
+                else
+		        echo "deleting..."
+                        # this fetches latest and prunes remote tracking, gets a list of merged branches
+                        # that are merged in the current branch then locally deletes all branches in that list
+                        # Warning: before running this command, make sure you are in your main branch;
+                        # aka not a feature branch
+                        git fetch -p; git branch --merged | egrep -v "(^\*|\$SAFE_BRANCHES)" | xargs git branch -d
+                        # this fetches the latest and prunes remote tracking, gets all branches that does not exist
+                        # locally, then locally deletes all branches in that list
+                        git branch --list --no-merged | egrep -v "(^\*|\$SAFE_BRANCHES)" | xargs git branch -d
+                        echo "done"
+                fi
         else
                 echo "Unable to locate git in the current directory"
         fi
