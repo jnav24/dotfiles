@@ -12,6 +12,7 @@ path=(
 	$HOME/.flutter/bin
 	$HOME/.local/bin
 	$HOME/bin
+	$HOME/.composer/vendor/bin
 	$path
 )
 
