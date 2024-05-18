@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brew install php
+# Use this to install and update composer
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 # comment this line because each version has a different hash
