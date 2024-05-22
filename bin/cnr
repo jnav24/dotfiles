@@ -17,5 +17,31 @@ C_DIR=`pwd`
 git clone git@github.com:nickjj/docker-rails-example ~/tmp-rails
 rm -rf ~/tmp-rails/.git
 cp ~/tmp-rails/.env.example ~/tmp-rails/.env
-mv ~/tmp-rails "$C_DIR/$1" 
+mv ~/tmp-rails "$C_DIR/$1"
+cd "$C_DIR/$1"
+first_param=$(echo "$1" | tr '-' '_')
+second_param=$(echo "$1" | awk -F- '{for (i=2; i<=NF; i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS="")
+./bin/rename-project $first_param $second_param
 
+cat << EOF
+=========================================================================
+Congrats! You are all setup!
+
+Next you will need to do the following:
+
+1. cd into your project
+2. ensure ports are open for your db in the docker compose file
+    ports:
+      - '5432:5432'
+3. run the following to start docker
+    docker compose up --build
+4. run './run rails db:setup'
+5. common rails command using the './run'
+    ./run rails g scaffold <name>
+    ./run bundle:install
+    ./run bundle:update
+    ./run bundle:outdated
+    ./run (to get the list of commands)
+6. use http://localhost:8000 to view your app
+=========================================================================
+EOF
