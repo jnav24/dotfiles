@@ -17,10 +17,12 @@ C_DIR=`pwd`
 git clone git@github.com:laravel/laravel ~/tmp-laravel
 rm -rf ~/tmp-laravel/.git
 cp ~/tmp-laravel/.env.example ~/tmp-laravel/.env
-mv ~/tmp-laravel "$C_DIR/$1" 
+mv ~/tmp-laravel "$C_DIR/$1"
 cd "$C_DIR/$1"
+php artisan key:generate
 git init
 git add --all
 git commit -m 'initial commit'
 git branch -M main
+ilx
 cd "$C_DIR"
