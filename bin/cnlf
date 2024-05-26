@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# ---- Create New Laravel Filament aka cnlf
+# Creates a Project Filament using the latest Filament
+
+if [[ ! -n $1 ]]; then
+    echo "A name for this project is required"
+    exit 1
+fi
+
+C_DIR=`pwd`
+
+cnl $1
+cd "$C_DIR/$1"
+
+composer require filament/filament:"^3" -W
+php artisan filament:install --panels
+
+# Git Commits
+git add --all
+git commit -m 'installed filament'
+
+cat << EOF
+=========================================================================
+Congrats! You are all setup!
+
+You have install your node modules with your favorite package manager.
+
+i.e.
+'cd ./$1'
+'npm i && npm run dev'
+
+To create a new user
+
+'php artisan make:filament-user'
+
+If you are using Sail, your app is on 'http://localhost'.
+If you are using custom Docker, your app is on 'http://localhost:8080'
+=========================================================================
+EOF
