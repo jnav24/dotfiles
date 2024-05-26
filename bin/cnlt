@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# ---- Create New Laravel Tall aka cnlt
+# Creates a Tall Stack (Tailwind Alpine Livewire Laravel) project and includes all my favorite libraries
+
+if [[ ! -n $1 ]]; then
+    echo "A name for this project is required"
+    exit 1
+fi
+
+C_DIR=`pwd`
+
+cnl $1
+cd "$C_DIR/$1"
+composer require livewire/livewire laravel-frontend-presets/tall
+
+while true; do
+    read -p "Do you want auth (y/n)? " -r yn
+    case "${yn}" in
+        [Yy]* )
+          php artisan ui tall --auth
+          break;;
+        [Nn]* )
+          php artisan ui tall
+          break;;
+        * ) echo "";;
+    esac
+done
+
+# Git Commits
+git add --all
+git commit -m 'installed tall stack'
+
+
+cat << EOF
+=========================================================================
+Congrats! You are all setup!
+
+You have install your node modules with your favorite package manager.
+
+i.e.
+'cd ./$1'
+'npm i && npm run dev'
+
+If you are using Sail, your app is on 'http://localhost'.
+If you are using custom Docker, your app is on 'http://localhost:8080'
+=========================================================================
+EOF
