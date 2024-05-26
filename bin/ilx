@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# ---- Install Laravel Extras
+# These are the common libraries I use in my Laravel projects
+
+# IDE Helper
+composer require --dev barryvdh/laravel-ide-helper
+
+# Debugbar
+composer require barryvdh/laravel-debugbar --dev
+
+# Larastan
+composer require larastan/larastan:^2.0 --dev
+
+if [[ ! -f "phpstan.neon" ]]; then
+  touch phpstan.neon
+  echo "includes:" >> phpstan.neon
+  echo -e "\t- vendor/larastan/larastan/extension.neon\n" >> phpstan.neon
+  echo "parameters:" >> phpstan.neon
+  echo -e "\tpaths:" >> phpstan.neon
+  echo -e "\t\t- app/\n" >> phpstan.neon
+  echo -e "\t# Level 9 is the highest level" >> phpstan.neon
+  echo -e "\tlevel: 9\n" >> phpstan.neon
+  echo -e "\t# ignoreErrors:" >> phpstan.neon
+  echo -e "\t\t# - '#PHPDoc tag @var#'\n" >> phpstan.neon
+  echo -e "\t# excludePaths:" >> phpstan.neon
+  echo -e "\t\t# - ./*/*/FileToBeExcluded.php\n" >> phpstan.neon
+  echo -e "\t# checkMissingIterableValueType: false" >> phpstan.neon
+fi
+
+# Livewire Volt
+composer require livewire/volt
+php artisan volt:install
+
+# Laravel Spatie Permission
+while true; do
+    read -p "Do you want install Laravel Permission (y/n)? " -r yn
+    case "${yn}" in
+        [Yy]* )
+          composer require spatie/laravel-permission
+          php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+          break;;
+        [Nn]* ) exit;;
+        * ) echo "";;
+    esac
+done
+
+# Laravel Sail
+while true; do
+    read -p "Do you want install Laravel Sail (y/n)? " -r yn
+    case "${yn}" in
+        [Yy]* )
+          php artisan sail:install
+          break;;
+        [Nn]* ) exit;;
+        * ) echo "";;
+    esac
+done
+
+# Git Commits
+git add --all
+git commit -m 'installed 3rd party packages'
