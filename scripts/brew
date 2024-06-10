@@ -38,3 +38,6 @@ brew install pnpm
 
 # Install PHP
 brew install php
+
+# Random
+brew install telnet
