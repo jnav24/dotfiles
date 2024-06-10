@@ -40,7 +40,7 @@ while true; do
           composer require spatie/laravel-permission
           php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
           break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "";;
     esac
 done
@@ -52,7 +52,7 @@ while true; do
         [Yy]* )
           php artisan sail:install
           break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "";;
     esac
 done
