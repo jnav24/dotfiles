@@ -41,3 +41,4 @@ brew install php
 
 # Random
 brew install telnet
+brew install protobuf
