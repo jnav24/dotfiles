@@ -11,6 +11,7 @@ path=(
     $GOROOT/bin
 	$HOME/.flutter/bin
 	$HOME/.local/bin
+	$HOME/go/bin
 	$HOME/bin
 	$HOME/.composer/vendor/bin
 	$path
