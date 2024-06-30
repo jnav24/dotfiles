@@ -20,7 +20,7 @@ cp ~/tmp-rails/.env.example ~/tmp-rails/.env
 mv ~/tmp-rails "$C_DIR/$1"
 cd "$C_DIR/$1"
 first_param=$(echo "$1" | tr '-' '_')
-second_param=$(echo "$1" | awk -F- '{for (i=2; i<=NF; i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS="")
+second_param=$(echo "$1" | awk -F- '{for (i=1; i<=NF; i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS="")
 ./bin/rename-project $first_param $second_param
 
 cat << EOF
