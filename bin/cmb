@@ -15,7 +15,7 @@ then
                 if [[ -z $(git symbolic-ref --short -q HEAD | egrep -v "(^\*\|\$SAFE_BRANCHES)") ]]; then
                         echo "Unable to run this command in a feature branch. Checkout to a main branch"
                 else
-		        echo "deleting..."
+		        echo "\ndeleting..."
                         # this fetches latest and prunes remote tracking, gets a list of merged branches
                         # that are merged in the current branch then locally deletes all branches in that list
                         # Warning: before running this command, make sure you are in your main branch;
