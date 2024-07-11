@@ -36,8 +36,14 @@ brew install bun
 brew install yarn
 brew install pnpm
 
-# Install PHP
+# Install Languages
 brew install php
+brew install elixir
+brew install rust
+# todo look up how to install this vs chruby
+# brew install rbenv
+# rbenv install -l
+# brew install go # decide if I want to use brew or my custom go installer script
 
 # Random
 brew install telnet
