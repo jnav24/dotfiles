@@ -7,3 +7,4 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias sa="sail artisan"
 alias sc="sail composer"
 alias rr="./run rails"
+alias rbi="./run bundle:install"
