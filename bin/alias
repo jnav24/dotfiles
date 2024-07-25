@@ -1,8 +1,8 @@
 alias ll="ls -alF"
 alias vi="nvim"
-alias dcd="docker-compose down"
-alias dcu="docker-compose up"
-alias dcr="docker-compose run --rm"
+alias dcd="docker compose down"
+alias dcu="docker compose up"
+alias dcr="docker compose run --rm"
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias sa="sail artisan"
 alias sc="sail composer"
