@@ -40,11 +40,16 @@ brew install pnpm
 brew install php
 brew install elixir
 brew install rust
-# todo look up how to install this vs chruby
-# brew install rbenv
-# rbenv install -l
+brew install rbenv
 # brew install go # decide if I want to use brew or my custom go installer script
+
+# Install latest Ruby version
+latest_ruby_version=$(rbenv install -l | grep -v - | tail -1)
+rbenv install $latest_ruby_version
+rbenv global $latest_ruby_version
 
 # Random
 brew install telnet
 brew install protobuf
+
+source ~/.zshrc
