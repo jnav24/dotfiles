@@ -53,3 +53,5 @@ brew install telnet
 brew install protobuf
 
 source ~/.zshrc
+
+gem install rails
