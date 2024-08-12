@@ -19,6 +19,8 @@ path=(
 
 export PATH
 
+# ------- HomeBrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ------- NVM
 export NVM_DIR="$HOME/.nvm"
