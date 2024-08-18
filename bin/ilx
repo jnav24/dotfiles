@@ -28,10 +28,6 @@ if [[ ! -f "phpstan.neon" ]]; then
   echo -e "\t# checkMissingIterableValueType: false" >> phpstan.neon
 fi
 
-# Livewire Volt
-composer require livewire/volt
-php artisan volt:install
-
 # Laravel Spatie Permission
 while true; do
     read -p "Do you want install Laravel Permission (y/n)? " -r yn

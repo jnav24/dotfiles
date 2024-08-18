@@ -14,6 +14,10 @@ cnl $1
 cd "$C_DIR/$1"
 composer require livewire/livewire laravel-frontend-presets/tall
 
+# Livewire Volt
+composer require livewire/volt
+php artisan volt:install
+
 while true; do
     read -p "Do you want auth (y/n)? " -r yn
     case "${yn}" in
