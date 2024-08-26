@@ -15,6 +15,7 @@ cd "$C_DIR/$1"
 
 composer require laravel/breeze --dev
 php artisan breeze:install
+php artisan key:generate
 rm package-lock.json
 rm -rf node_modules
 pnpm install
