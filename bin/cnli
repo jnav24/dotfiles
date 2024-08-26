@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# ---- Create New Laravel Breeze aka cnlb
+# Breeze the starting authentication also comes with a choice of blade, livewire, and inertia
+
+if [[ ! -n $1 ]]; then
+    echo "A name for this project is required"
+    exit 1
+fi
+
+C_DIR=`pwd`
+
+cnl $1
+cd "$C_DIR/$1"
+
+composer require laravel/breeze --dev
+php artisan breeze:install
+rm package-lock.json
+rm -rf node_modules
+pnpm install
+
+# Git Commits
+git add --all
+git commit -m 'installed breeze'
+
