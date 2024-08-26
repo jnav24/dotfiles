@@ -20,7 +20,11 @@ path=(
 export PATH
 
 # ------- HomeBrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+BREW_LOCATION=$(which brew)
+
+if [[ -n "$BREW_LOCATION" ]]; then
+    eval "$($BREW_LOCATION shellenv)"
+fi
 
 # ------- NVM
 export NVM_DIR="$HOME/.nvm"
@@ -28,4 +32,6 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # ------- rbenv
-eval "$(rbenv init - zsh)"
+if which rbenv > /dev/null; then
+    eval "$(rbenv init - zsh)"
+fi
