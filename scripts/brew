@@ -56,3 +56,10 @@ brew install protobuf
 source ~/.zshrc
 
 gem install rails
+
+# AWS
+brew install awscli
+brew install aws-amplify
+
+# GCP
+brew install --cask google-cloud-sdk
