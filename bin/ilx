@@ -53,6 +53,18 @@ while true; do
     esac
 done
 
+# SoloTerm
+while true; do
+    read -p "Do you want to install SoloTerm (y/n)? " -r yn
+    case "${yn}" in
+        [Yy]* )
+            composer require soloterm/solo --dev
+            php artisan solo:install
+        [Nn]* ) break;;
+        * ) echo "";;
+    esac   
+done
+
 # Git Commits
 git add --all
 git commit -m 'installed 3rd party packages'
