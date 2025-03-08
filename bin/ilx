@@ -10,7 +10,7 @@ composer require --dev barryvdh/laravel-ide-helper
 composer require barryvdh/laravel-debugbar --dev
 
 # Larastan
-composer require larastan/larastan:^2.0 --dev
+composer require larastan/larastan:^3.0 --dev
 
 if [[ ! -f "phpstan.neon" ]]; then
   touch phpstan.neon
