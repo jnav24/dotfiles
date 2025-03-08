@@ -20,6 +20,9 @@ rm package-lock.json
 rm -rf node_modules
 pnpm install
 
+composer require based/laravel-typescript
+php artisan vendor:publish --provider="Based\TypeScript\TypeScriptServiceProvider" --tag="typescript-config"
+
 # Git Commits
 git add --all
 git commit -m 'installed breeze'
