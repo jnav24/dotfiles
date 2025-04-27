@@ -40,11 +40,13 @@ DB_HOST=${DB_HOST:-localhost}
 read -p "Enter table prefix [default: wp_]: " TABLE_PREFIX
 TABLE_PREFIX=${TABLE_PREFIX:-wp_}
 
-sed -i "s/define('DB_NAME', '.*');/define('DB_NAME', '$DB_NAME');/" "$CONFIG"
-sed -i "s/define('DB_USER', '.*');/define('DB_USER', '$DB_USER');/" "$CONFIG"
-sed -i "s/define('DB_PASSWORD', '.*');/define('DB_PASSWORD', '$DB_PASSWORD');/" "$CONFIG"
-sed -i "s/define('DB_HOST', '.*');/define('DB_HOST', '$DB_HOST');/" "$CONFIG"
-sed -i "s/\$table_prefix = '.*';/\$table_prefix = '$TABLE_PREFIX';/" "$CONFIG"
+sed -i.bak "s/database_name_here/$DB_NAME/g" wp-config.php
+sed -i.bak "s/username_here/$DB_USER/g" wp-config.php
+sed -i.bak "s/password_here/$DB_PASSWORD/g" wp-config.php
+sed -i.bak "s/localhost/$DB_HOST/g" wp-config.php
+sed -i.bak "s/\$table_prefix = 'wp_'/\$table_prefix = '$TABLE_PREFIX'/g" wp-config.php
+
+rm wp-config.php.bak
 
 SALT=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
 
