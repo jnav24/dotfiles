@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# ---- Create WordPress Project
+# Clones the latest WordPress, renames the project, and stores it in the current location
+
+if [[ ! -n $1 ]]; then
+    echo "A name for this project is required"
+    exit 1
+fi
+
+C_DIR=`pwd`
+
+git clone git@github.com:WordPress/WordPress.git ~/tmp-wordpress
+rm -rf ~/tmp-wordpress/.git
+mv ~/tmp-wordpress "$C_DIR/$1"
+cd "$C_DIR/$1"
+
+CONFIG_SAMPLE="wp-config-sample.php"
+CONFIG="wp-config.php"
+
+if [ ! -f "$CONFIG" ]; then
+    mv "$CONFIG_SAMPLE" "$CONFIG"
+    echo "Renamed $CONFIG_SAMPLE to $CONFIG"
+else
+    echo "$CONFIG already exists. Skipping rename."
+fi
+
+read -p "Enter database name [default: wordpress]: " DB_NAME
+DB_NAME=${DB_NAME:-wordpress}
+
+read -p "Enter database user [default: root]: " DB_USER
+DB_USER=${DB_USER:-root}
+
+read -p "Enter database password [default: password]: " DB_PASSWORD
+DB_PASSWORD=${DB_PASSWORD:-password}
+
+read -p "Enter database host [default: localhost]: " DB_HOST
+DB_HOST=${DB_HOST:-localhost}
+
+read -p "Enter table prefix [default: wp_]: " TABLE_PREFIX
+TABLE_PREFIX=${TABLE_PREFIX:-wp_}
+
+sed -i "s/define('DB_NAME', '.*');/define('DB_NAME', '$DB_NAME');/" "$CONFIG"
+sed -i "s/define('DB_USER', '.*');/define('DB_USER', '$DB_USER');/" "$CONFIG"
+sed -i "s/define('DB_PASSWORD', '.*');/define('DB_PASSWORD', '$DB_PASSWORD');/" "$CONFIG"
+sed -i "s/define('DB_HOST', '.*');/define('DB_HOST', '$DB_HOST');/" "$CONFIG"
+sed -i "s/\$table_prefix = '.*';/\$table_prefix = '$TABLE_PREFIX';/" "$CONFIG"
+
+SALT=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
+
+STRING='put your unique phrase here'
+printf '%s\n' "g/$STRING/d" a "$SALT" . w | ed -s "$CONFIG"
+
+while true; do
+    read -p "Do you want to create a custom theme? (y/n)? " -r yn
+    case "${yn}" in
+        [Yy]* )
+          mkdir -p $C_DIR/$1/wp_contents/themes/$1
+          git init
+          git add --all
+          git commit -m 'initial commit'
+          git branch -M main
+          break;;
+        [Nn]* ) break;;
+        * ) echo "";;
+    esac
+done
+
+while true; do
+    read -p "Do you want to create a custom plugin? (y/n)? " -r yn
+    case "${yn}" in
+        [Yy]* )
+          mkdir -p $C_DIR/$1/wp_contents/plugins/$1
+          git init
+          git add --all
+          git commit -m 'initial commit'
+          git branch -M main
+          break;;
+        [Nn]* ) break;;
+        * ) echo "";;
+    esac
+done
+
+cd "$C_DIR"
