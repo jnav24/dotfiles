@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ---- Create New Laravel Breeze aka cnlb
+# ---- Create New Laravel Inertia (with Breeze) aka cnli
 # Breeze the starting authentication also comes with a choice of blade, livewire, and inertia
 
 if [[ ! -n $1 ]]; then
